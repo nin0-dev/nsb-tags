@@ -29,7 +29,7 @@ if(!storage[discord.user.id]) return console.log("❌ You aren't registered, set
   console.log(JSON.stringify({embed: 
     {
         author: { 
-          iconUrl: `https://cdn.discordapp.com/avatars/${discord.user.id}/${discord.user.avatar}`,
+          icon_url: `https://cdn.discordapp.com/avatars/${discord.user.id}/${discord.user.avatar}.png`,
           name: `${(()=>{if(track["@attr"]) { if(track["@attr"].nowplaying === "true") return true; else return false; } return false;})() ? "Now playing - " : "Last track for "}${getName()}`
         },
         description: `### [${track.name}](https://last.fm/user/${storage[discord.user.id]})
