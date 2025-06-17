@@ -1,8 +1,8 @@
 // @ts-check
 
-import { build } from "esbuild";
+import { context } from "esbuild";
 
-await build({
+let ctx = await context({
 	entryPoints: [`${process.argv[process.argv.length - 1]}/index.js`],
 	bundle: true,
 	platform: "node",
@@ -12,3 +12,5 @@ await build({
 	minify: true,
 	treeShaking: true, // shake it off shake it offff
 });
+
+await ctx.watch();
