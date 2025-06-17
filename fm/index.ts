@@ -1,34 +1,14 @@
-(async () => {
-	function getName() {
-		return (
-			discord.member.nick ||
-			discord.user.global_name ||
-			discord.user.username
-		);
-	}
+import { getName } from "@common/getName";
+import { initStorage } from "@common/storage";
 
-	discord.storage.server.fm ??= "{}";
-	const storage = new Proxy(
-		{},
-		{
-			get(_, prop) {
-				const data = JSON.parse(discord.storage.server.fm || "{}");
-				return data[prop];
-			},
-			set(_, prop, value) {
-				const data = JSON.parse(discord.storage.server.fm || "{}");
-				data[prop] = value;
-				discord.storage.server.fm = JSON.stringify(data);
-				return true;
-			},
-		}
-	);
+(async () => {
+	const storage = initStorage("fm");
 
 	if (
 		discord.variables.__args[0] === "eval" &&
 		discord.user.id === "886685857560539176"
 	)
-		return eval(discord.variables.__argsString.replace("eval ", ""));
+		return (0, eval)(discord.variables.__argsString.replace("eval ", ""));
 
 	const isUserTryingToSet =
 		discord.variables.__args[0] === "set" &&
