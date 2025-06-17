@@ -64,6 +64,30 @@ import { initStorage } from "@common/storage";
 					})
 **${track.artist.name}** • *${track.album["#text"]}*`,
 					color: 12189696,
+					thumbnail: {
+						url: track.image[track.image.length - 1]["#text"],
+					},
+					footer: {
+						text: `${
+							track.loved === "1"
+								? `${
+										[
+											"❤️",
+											"🧡",
+											"💛",
+											"💚",
+											"💙",
+											"💜",
+											"🤍",
+											"💖",
+											"💝",
+											"🩵",
+											"🩷",
+										][Math.floor(Math.random() * 10)]
+								  } Loved track • `
+								: ""
+						}${d.recenttracks["@attr"].total} user scrobbles`,
+					},
 				},
 			})
 		);
